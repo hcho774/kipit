@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Business Property Management System equipped with searchable inventories and tools for tracking inventory assets
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Users can add products in the inventory system
+Users can edit details of the product such as price, quantity and location
+Users can delete the products
+Users can filter the products by name, price, and locations
+...
