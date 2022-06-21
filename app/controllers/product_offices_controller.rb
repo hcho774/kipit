@@ -1,0 +1,2 @@
+class ProductOfficesController < ApplicationController
+end
