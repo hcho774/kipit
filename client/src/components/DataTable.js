@@ -1,15 +1,15 @@
 import React from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { userColumns, userRows } from "./datatablesource";
+import { productColumns, userRows } from "./datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./datatable.scss";
 
-function DataTable() {
-  const [data, setData] = useState(userRows);
+function DataTable({ products, setProducts }) {
+  const [id, setId] = useState(0);
 
   function handleDelete(id) {
-    setData(data.filter((item) => item.id !== id));
+    setProducts(products.filter((item) => item.id !== id));
   }
 
   const actionColumn = [
@@ -20,7 +20,7 @@ function DataTable() {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to="/users/${id}" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
 
@@ -44,8 +44,8 @@ function DataTable() {
         </Link>
       </div>
       <DataGrid
-        rows={data}
-        columns={userColumns.concat(actionColumn)}
+        rows={products}
+        columns={productColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[5]}
         checkboxSelection

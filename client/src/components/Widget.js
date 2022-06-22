@@ -6,19 +6,28 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import InventoryIcon from "@mui/icons-material/Inventory";
 
-function Widget({ type }) {
+function Widget({ type, products }) {
   let data;
+
+  let totalPrice = 0;
+  products.map((element) => {
+    totalPrice += element.price;
+  });
+
+  const averageSpending = Math.floor(totalPrice / products.length);
 
   //temporary
   const amount = 100;
   const diff = 20;
 
   switch (type) {
-    case "order":
+    case "purchase":
       data = {
-        title: "ORDERS",
+        title: "PURCHASES",
         isMoney: false,
         link: "See all orders",
+        amount: products.length,
+        diff: products.length,
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -35,6 +44,8 @@ function Widget({ type }) {
         title: "USERS",
         isMoney: false,
         link: "View all users",
+        // amount: ,
+        // diff: ,
         icon: (
           <PersonOutlineIcon
             className="icon"
@@ -51,6 +62,8 @@ function Widget({ type }) {
         title: "SPENDINGS",
         isMoney: true,
         link: "View net spendings",
+        // amount: ,
+        // diff: ,
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -64,6 +77,8 @@ function Widget({ type }) {
         title: "INVENTORY",
         isMoney: true,
         link: "See details",
+        // amount: ,
+        // diff: ,
         icon: (
           <InventoryIcon
             className="icon"
