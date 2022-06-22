@@ -5,6 +5,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.4",
     "react-router-dom": "^6.3.0",
+    "recharts": "^2.1.10",
     "sass": "^1.52.3"
   }
 }
