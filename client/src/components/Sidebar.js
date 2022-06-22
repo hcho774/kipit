@@ -4,11 +4,15 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import InventoryIcon from "@mui/icons-material/Inventory";
+import { Link } from "react-router-dom";
+
 function Sidebar() {
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">Kipit</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">Kipit</span>
+        </Link>
       </div>
       <hr />
       <div className="center">
@@ -19,19 +23,25 @@ function Sidebar() {
             <span>Dashboard</span>
           </li>
           <p className="title">LISTS</p>
-          <li>
-            <InventoryIcon className="icon" />
-            <span>Products</span>
-          </li>
+          <Link to="/products" style={{ textDecoration: "none" }}>
+            <li>
+              <InventoryIcon className="icon" />
+              <span>Products</span>
+            </li>
+          </Link>
+
           <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>
           </li>
           <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Users</span>
-          </li>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
+
           <li>
             <span>Logout</span>
           </li>
