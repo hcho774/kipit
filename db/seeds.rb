@@ -9,14 +9,14 @@
 
 puts "🦸‍♀️ Seeding users..."
 User.create([
-  { full_name: "Hyun", username: "hyun", password_digest: "123"},
-  { full_name: "Amy", username: "amy", password_digest: "123" },
+  { full_name: "Hyun", username: "hyun", password_digest: "123", status: "active", email: "hcho774@gmail.com" },
+  { full_name: "Amy", username: "amy", password_digest: "123", status: "active", email: "amy@gmail.com"},
 ])
 
 puts "🦸‍♀️ Seeding products..."
 Product.create([
-  { name: Faker::Commerce.product_name, image: "https://images.samsung.com/is/image/samsung/latin_en-curved-cf390-lc27f390fhlxzp-001-front-black?$650_519_PNG$", price: Faker::Commerce.price, user_id: User.ids.sample, in_stock: true },
-  { name: Faker::Commerce.product_name, image: "https://images.samsung.com/is/image/samsung/latin_en-curved-cf390-lc27f390fhlxzp-001-front-black?$650_519_PNG$", price: Faker::Commerce.price, user_id: User.ids.sample, in_stock: true }
+  { product: Faker::Commerce.product_name, img: "https://images.samsung.com/is/image/samsung/latin_en-curved-cf390-lc27f390fhlxzp-001-front-black?$650_519_PNG$", price: Faker::Commerce.price, user_id: 1, in_stock: true, merchant: "samsung", payment: "Online Payment", quantity: 14,  status: "Delivered" },
+  { product: Faker::Commerce.product_name, img: "https://images.samsung.com/is/image/samsung/latin_en-curved-cf390-lc27f390fhlxzp-001-front-black?$650_519_PNG$", price: Faker::Commerce.price, user_id: 2, in_stock: true, merchant: "google", payment: "COD", quantity: 12, status: "Pending"}
 ])
 
 puts "🦸‍♀️ Adding offices..."
