@@ -27,9 +27,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_231409) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.string "image"
+    t.string "product"
+    t.string "img"
+    t.string "merchant"
+    t.string "payment"
     t.integer "price"
+    t.integer "quantity"
+    t.string "status"
     t.integer "user_id"
     t.integer "in_stock"
     t.datetime "created_at", null: false
@@ -38,6 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_231409) do
 
   create_table "users", force: :cascade do |t|
     t.string "full_name"
+    t.string "status"
+    t.string "email"
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", null: false
