@@ -7,16 +7,16 @@
     color: #555;
     .wrapper {
         width: 100%;
-        padding: 20px;
+        padding: 9px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-      
+        border-bottom:  0.7px solid lightgray;
         .search {
             display: flex;
             align-items: center;
             border: 0.5px solid lightgrey;
-
+      
             input{
                 border: none;
                 outline: none;
