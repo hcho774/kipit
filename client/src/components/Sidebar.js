@@ -45,9 +45,9 @@ function Sidebar() {
             </li>
           </Link>
 
-          <li>
+          {/* <li>
             <span>Logout</span>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :products, only: [:index, :create, :show, :destroy, :update]
- 
+ resources :offices, only: [:index]
+
+ post "/signup", to: "users#create"
+  get "/me", to: "users#show"
+  # get "/users", to: "users#index"
+
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  post "/signup", to: "users#create"
-  get "/me", to: "users#show"
-  get "/users", to: "users#index"
+
 end

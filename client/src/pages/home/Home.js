@@ -7,27 +7,17 @@ import Chart from "../../components/Chart";
 import Featured from "../../components/Featured";
 import List from "../../components/List";
 
-function Home() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("/products")
-      .then((r) => r.json())
-      .then((products) => setProducts(products));
-  }, []);
-
-  console.log(products);
-
+function Home({ products, offices, navigate }) {
   return (
     <div className="home">
       <Sidebar />
       <div className="homecontainer">
-        <NavBar />
+        <NavBar navigate={navigate} />
         <div className="widgets">
-          <Widget type="purchase" products={products} />
-          <Widget type="user" products={products} />
-          <Widget type="spending" products={products} />
-          <Widget type="inventory" products={products} />
+          <Widget type="purchase" products={products} offices={offices} />
+          <Widget type="user" products={products} offices={offices} />
+          {/* <Widget type="spending" products={products} /> */}
+          <Widget type="office" products={products} offices={offices} />
         </div>
         <div className="charts">
           <Featured />

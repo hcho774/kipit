@@ -25,13 +25,17 @@ export const productColumns = [
     width: 100,
   },
   {
-    field: "location",
-    headerName: "Location",
+    field: "locations",
+    headerName: "Locations",
     width: 160,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
+        <div
+          className={`cellWithStatus ${params.row.offices.map(
+            (office) => `${office.id}, `
+          )}`}
+        >
+          {params.row.offices.map((office) => `${office.id}, `)}
         </div>
       );
     },

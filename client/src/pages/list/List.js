@@ -4,15 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import DataTable from "../../components/DataTable";
 import "./list.scss";
 
-function List() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("/products")
-      .then((r) => r.json())
-      .then((products) => setProducts(products));
-  }, []);
-
+function List({ products, setProducts }) {
   return (
     <div className="list">
       <Sidebar />

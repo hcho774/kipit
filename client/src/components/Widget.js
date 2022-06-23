@@ -4,15 +4,19 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import InventoryIcon from "@mui/icons-material/Inventory";
+import BusinessIcon from "@mui/icons-material/Business";
 
-function Widget({ type, products }) {
+function Widget({ type, products, offices }) {
   let data;
 
   let totalPrice = 0;
+  let userArray = [];
   products.map((element) => {
     totalPrice += element.price;
+    userArray.push(element.user);
   });
+
+  console.log(offices.length);
 
   const averageSpending = Math.floor(totalPrice / products.length);
 
@@ -26,7 +30,7 @@ function Widget({ type, products }) {
         title: "PURCHASES",
         isMoney: false,
         link: "See all orders",
-        amount: products.length,
+        amount: totalPrice,
         diff: products.length,
         icon: (
           <ShoppingCartOutlinedIcon
@@ -44,7 +48,7 @@ function Widget({ type, products }) {
         title: "USERS",
         isMoney: false,
         link: "View all users",
-        // amount: ,
+        amount: userArray.length,
         // diff: ,
         icon: (
           <PersonOutlineIcon
@@ -57,30 +61,30 @@ function Widget({ type, products }) {
         ),
       };
       break;
-    case "spending":
+    // case "spending":
+    //   data = {
+    //     title: "SPENDINGS",
+    //     isMoney: true,
+    //     link: "View net spendings",
+    //     // amount: ,
+    //     // diff: ,
+    //     icon: (
+    //       <MonetizationOnOutlinedIcon
+    //         className="icon"
+    //         style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+    //       />
+    //     ),
+    //   };
+    //   break;
+    case "office":
       data = {
-        title: "SPENDINGS",
-        isMoney: true,
-        link: "View net spendings",
-        // amount: ,
-        // diff: ,
-        icon: (
-          <MonetizationOnOutlinedIcon
-            className="icon"
-            style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
-          />
-        ),
-      };
-      break;
-    case "inventory":
-      data = {
-        title: "INVENTORY",
-        isMoney: true,
+        title: "OFFICES",
+        isMoney: false,
         link: "See details",
-        // amount: ,
-        // diff: ,
+        amount: offices.length,
+
         icon: (
-          <InventoryIcon
+          <BusinessIcon
             className="icon"
             style={{
               backgroundColor: "rgba(128, 0, 128, 0.2)",
@@ -99,15 +103,15 @@ function Widget({ type, products }) {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && "$"} {data.amount}
         </span>
         <span className="link">{data.link}</span>
       </div>
 
       <div className="right">
         <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          {diff} %
+          {/* <KeyboardArrowUpIcon />
+          {diff} % */}
         </div>
         {data.icon}
       </div>

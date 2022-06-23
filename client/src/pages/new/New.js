@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../components/NavBar";
 import Sidebar from "../../components/Sidebar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import "./new.scss";
 function New({ inputs, title }) {
+  const [formData, setFormData] = useState({
+    product: "",
+    img: "",
+    merchant: "",
+    payment: 0,
+    price: 0,
+    quantity: 0,
+    user_id: "",
+  });
+
+  function onChange() {}
+
   return (
     <div className="new">
       <Sidebar />
@@ -28,12 +40,37 @@ function New({ inputs, title }) {
                 <input type="file" id="file" style={{ display: "none" }} />
               </div>
 
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
+              <div className="formInput">
+                <label>Product Name</label>
+                <input type="text" placeholder="" />
+              </div>
+
+              <div className="formInput">
+                <label>Merchant</label>
+                <input type="text" placeholder="" />
+              </div>
+
+              <div className="formInput">
+                <label>Payment</label>
+                <input type="text" placeholder="" />
+              </div>
+
+              <div className="formInput">
+                <label>Price</label>
+                <input type="text" placeholder="" />
+              </div>
+
+              <div className="formInput">
+                <label>Quantity</label>
+                <input type="text" placeholder="" />
+              </div>
+
+              {/* {inputs.map((input) => (
+                <div className="formInput" >
                   <label>{input.label}</label>
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>
-              ))}
+              ))} */}
               <button>Send</button>
             </form>
           </div>

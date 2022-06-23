@@ -38,8 +38,8 @@ function DataTable({ products, setProducts }) {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
+        Add New Products
+        <Link to="/products/new" className="link">
           Add New
         </Link>
       </div>
