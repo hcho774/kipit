@@ -9,6 +9,7 @@ function NavBar({ user, setUser, navigate }) {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setUser(null);
+        navigate("/login");
       }
     });
   }
@@ -22,6 +23,7 @@ function NavBar({ user, setUser, navigate }) {
         </div>
         <div className="items">
           <div className="item">
+            <p>{user.username}</p>
             {/* <img
               src="https://images.mubicdn.net/images/cast_member/2552/cache-207-1524922850/image-w856.jpg?size=800x"
               alt=""

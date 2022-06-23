@@ -8,28 +8,23 @@ function Login({ onLogin, navigate }) {
 
   return (
     <wrapper>
-      <p>Kipit</p>
       {showLogin ? (
         <>
-          <LoginForm onLogin={onLogin} navigate={navigate} />
+          <LoginForm
+            onLogin={onLogin}
+            navigate={navigate}
+            setShowLogin={setShowLogin}
+          />
           <Divider />
-          <p>
-            Don't have an account? &nbsp;
-            <button color="secondary" onClick={() => setShowLogin(false)}>
-              Sign Up
-            </button>
-          </p>
         </>
       ) : (
         <>
-          <SignUpForm onLogin={onLogin} navigate={navigate} />
+          <SignUpForm
+            onLogin={onLogin}
+            navigate={navigate}
+            setShowLogin={setShowLogin}
+          />
           <Divider />
-          <p>
-            Already have an account? &nbsp;
-            <button color="secondary" onClick={() => setShowLogin(true)}>
-              Log In
-            </button>
-          </p>
         </>
       )}
     </wrapper>

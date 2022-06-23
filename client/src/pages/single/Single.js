@@ -5,30 +5,18 @@ import Chart from "../../components/Chart";
 import List from "../../components/List";
 import "./single.scss";
 
-function Single() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("/products")
-      .then((r) => r.json())
-      .then((products) => setProducts(products));
-  }, []);
-
+function Single({ products, offices, navigate, setUser, user }) {
   return (
     <div className="single">
       <Sidebar />
       <div className="singleContainer">
-        <NavBar />
+        <NavBar navigate={navigate} setUser={setUser} user={user} />
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
             <h1 className="title">Information</h1>
             <div className="item">
-              <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                alt=""
-                className="itemImg"
-              />
+              <img src={products.img} alt="" className="itemImg" />
               <div className="details">
                 <h1 className="itemTitle">Jane Doe</h1>
                 <div className="detailItem">

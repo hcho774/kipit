@@ -5,11 +5,17 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./datatable.scss";
 
-function DataTable({ products, setProducts }) {
-  const [id, setId] = useState(0);
+function DataTable({ products, setProducts, navigate }) {
+  const [productId, setProductId] = useState();
 
   function handleDelete(id) {
     setProducts(products.filter((item) => item.id !== id));
+  }
+
+  function handleView(id) {
+    console.log(id);
+
+    navigate(`products/${productId}`);
   }
 
   const actionColumn = [
@@ -19,10 +25,8 @@ function DataTable({ products, setProducts }) {
       width: 200,
       renderCell: (params) => {
         return (
-          <div className="cellAction">
-            <Link to="/users/${id}" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
+          <div className="cellAction" onClick={() => handleView(params.row.id)}>
+            <div className="viewButton">View</div>
 
             <div
               className="deleteButton"

@@ -14,8 +14,6 @@ function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  // navigate.push('/')
-
   useEffect(() => {
     fetch("/products")
       .then((r) => r.json())
@@ -28,16 +26,16 @@ function App() {
       .then((offices) => setOffices(offices));
   }, []);
 
-  // useEffect(() => {
-  //   // auto-login
-  //   fetch("/me").then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
-  // if (!user) return <Login onLogin={setUser} navigate={navigate} />;
+  if (!user) return <Login onLogin={setUser} navigate={navigate} />;
 
   return (
     <div className="App">
@@ -46,23 +44,61 @@ function App() {
           exact
           path="/"
           element={
-            <Home products={products} offices={offices} navigate={navigate} />
+            <Home
+              products={products}
+              offices={offices}
+              navigate={navigate}
+              setUser={setUser}
+              user={user}
+            />
           }
+        />
+        <Route
+          exact
+          path="/login"
+          element={<Login onLogin={setUser} navigate={navigate} />}
         />
 
         <Route
           exact
           path="/products"
-          element={<List products={products} setProducts={setProducts} />}
+          element={
+            <List
+              products={products}
+              setProducts={setProducts}
+              navigate={navigate}
+              setUser={setUser}
+              user={user}
+            />
+          }
         />
 
         <Route
           exact
           path="/products/new"
-          element={<New inputs={userInputs} title="Add New User" />}
+          element={
+            <New
+              title="Add New User"
+              setUser={setUser}
+              user={user}
+              navigate={navigate}
+            />
+          }
         />
 
-        <Route exact path="/products/:id" element={<Single />} />
+        <Route
+          exact
+          path="/products/:id"
+          element={
+            <Single
+              products={products}
+              offices={offices}
+              navigate={navigate}
+              setUser={setUser}
+              user={user}
+            />
+          }
+        />
       </Routes>
     </div>
   );

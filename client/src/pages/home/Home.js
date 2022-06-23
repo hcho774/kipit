@@ -7,12 +7,12 @@ import Chart from "../../components/Chart";
 import Featured from "../../components/Featured";
 import List from "../../components/List";
 
-function Home({ products, offices, navigate }) {
+function Home({ products, offices, navigate, setUser, user }) {
   return (
     <div className="home">
       <Sidebar />
       <div className="homecontainer">
-        <NavBar navigate={navigate} />
+        <NavBar navigate={navigate} setUser={setUser} user={user} />
         <div className="widgets">
           <Widget type="purchase" products={products} offices={offices} />
           <Widget type="user" products={products} offices={offices} />
