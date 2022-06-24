@@ -3,13 +3,35 @@ import NavBar from "../../components/NavBar";
 import Sidebar from "../../components/Sidebar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import "./new.scss";
-function New({ title, user, setUser, navigate }) {
+import { productInputs } from "../../components/formsource";
+import { toUnitless } from "@mui/material/styles/cssUtils";
+const form = {
+  product: "",
+  img: "",
+  merchant: "",
+  payment: 0,
+  price: 0,
+  quantity: 0,
+  status: "",
+  user_id: 0,
+};
+
+function New({
+  title,
+  user,
+  setUser,
+  navigate,
+  setProducts,
+  products,
+  productId,
+}) {
+  const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState("");
   const [formData, setFormData] = useState({
     product: "",
     img: "",
     merchant: "",
-    payment: 0,
+    payment: "",
     price: 0,
     quantity: 0,
     status: "",
@@ -23,22 +45,47 @@ function New({ title, user, setUser, navigate }) {
     });
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((product) => console.log(product));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
-  }
+
+    if (title == "Edit Products") {
+      fetch(`/products/${productId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((r) => {
+        if (r.ok) {
+          r.json().then((product) => {
+            console.log(product);
+            setSuccess(true);
+          });
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
+    } else {
+      fetch(`/products/${productId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((r) => {
+        if (r.ok) {
+          r.json().then((product) => {
+            console.log(product);
+            setSuccess(true);
+          });
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
+
+      setFormData(form);
+    }
+  };
 
   // resetting the form
 
@@ -73,79 +120,72 @@ function New({ title, user, setUser, navigate }) {
                 <label>Image</label>
                 <input
                   type="text"
-                  placeholder="url"
+                  placeholder="URL"
                   name="img"
                   onChange={onChange}
                   value={formData.img}
                 />
               </div>
-
               <div className="formInput">
                 <label>Product Name</label>
                 <input
                   type="text"
-                  placeholder=""
+                  placeholder="Name"
                   name="product"
                   onChange={onChange}
                   value={formData.product}
                 />
               </div>
-
               <div className="formInput">
                 <label>Merchant</label>
                 <input
                   type="text"
-                  placeholder=""
+                  placeholder="Name"
                   name="merchant"
                   onChange={onChange}
                   value={formData.merchant}
                 />
               </div>
-
               <div className="formInput">
                 <label>Payment</label>
                 <input
                   type="text"
-                  placeholder=""
+                  placeholder="Payment method"
                   name="payment"
                   onChange={onChange}
                   value={formData.payment}
                 />
               </div>
-
               <div className="formInput">
                 <label>Price</label>
                 <input
                   type="text"
-                  placeholder=""
+                  placeholder="$"
                   name="price"
                   onChange={onChange}
                   value={formData.price}
                 />
               </div>
-
               <div className="formInput">
                 <label>Quantity</label>
                 <input
                   type="text"
-                  placeholder=""
+                  placeholder="Quantity"
                   name="quantity"
                   onChange={onChange}
                   value={formData.quantity}
                 />
               </div>
-
               <div className="formInput">
                 <label>Status</label>
                 <input
                   type="text"
-                  placeholder=""
+                  placeholder="Delivered or Pending"
                   name="status"
                   onChange={onChange}
                   value={formData.status}
                 />
               </div>
-
               {/* {inputs.map((input) => (
                 <div className="formInput" >
                   <label>{input.label}</label>
@@ -153,6 +193,7 @@ function New({ title, user, setUser, navigate }) {
                 </div>
               ))} */}
               <button>Send</button>
+              <em>{success ? "Successfully Submitted" : ""}</em>
             </form>
           </div>
         </div>
