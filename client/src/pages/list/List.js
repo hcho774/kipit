@@ -4,7 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import DataTable from "../../components/DataTable";
 import "./list.scss";
 
-function List({ products, setProducts, navigate, setUser, user }) {
+function List({ products, setProducts, navigate, setUser, user, handleEdit }) {
   return (
     <div className="list">
       <Sidebar />
@@ -14,6 +14,7 @@ function List({ products, setProducts, navigate, setUser, user }) {
           products={products}
           setProducts={setProducts}
           navigate={navigate}
+          handleEdit={handleEdit}
         />
       </div>
     </div>

@@ -16,8 +16,6 @@ function Widget({ type, products, offices }) {
     userArray.push(element.user);
   });
 
-  console.log(offices.length);
-
   const averageSpending = Math.floor(totalPrice / products.length);
 
   //temporary

@@ -13,6 +13,7 @@ function App() {
   const [offices, setOffices] = useState([]);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [productId, setProductId] = useState([]);
 
   useEffect(() => {
     fetch("/products")
@@ -34,6 +35,10 @@ function App() {
       }
     });
   }, []);
+
+  function handleEdit(id) {
+    setProductId(id);
+  }
 
   if (!user) return <Login onLogin={setUser} navigate={navigate} />;
 
@@ -69,6 +74,7 @@ function App() {
               navigate={navigate}
               setUser={setUser}
               user={user}
+              handleEdit={handleEdit}
             />
           }
         />
@@ -78,10 +84,29 @@ function App() {
           path="/products/new"
           element={
             <New
-              title="Add New User"
+              title="Add New Products"
               setUser={setUser}
               user={user}
               navigate={navigate}
+              setProducts={setProducts}
+              products={products}
+              productId={productId}
+            />
+          }
+        />
+
+        <Route
+          exact
+          path="/products/edit"
+          element={
+            <New
+              title="Edit Products"
+              setUser={setUser}
+              user={user}
+              navigate={navigate}
+              setProducts={setProducts}
+              products={products}
+              productId={productId}
             />
           }
         />
