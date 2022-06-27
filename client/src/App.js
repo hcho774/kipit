@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   function handleEdit(id) {
-    setProductId(id);
+    setProductId(id[0]);
   }
 
   if (!user) return <Login onLogin={setUser} navigate={navigate} />;
@@ -69,12 +69,33 @@ function App() {
           path="/products"
           element={
             <List
+              title="products"
+              offices={offices}
               products={products}
               setProducts={setProducts}
               navigate={navigate}
               setUser={setUser}
               user={user}
               handleEdit={handleEdit}
+              setOffices={setOffices}
+            />
+          }
+        />
+
+        <Route
+          exact
+          path="/offices"
+          element={
+            <List
+              title="offices"
+              offices={offices}
+              products={products}
+              setProducts={setProducts}
+              navigate={navigate}
+              setUser={setUser}
+              user={user}
+              handleEdit={handleEdit}
+              setOffices={setOffices}
             />
           }
         />
