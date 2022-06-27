@@ -3,14 +3,35 @@ import NavBar from "../../components/NavBar";
 import Sidebar from "../../components/Sidebar";
 import DataTable from "../../components/DataTable";
 import "./list.scss";
-
-function List({ products, setProducts }) {
+import DataTableOffices from "../../components/DataTableOffices";
+function List({
+  title,
+  products,
+  setProducts,
+  navigate,
+  setUser,
+  user,
+  handleEdit,
+  offices,
+  setOffices,
+}) {
+  console.log(title);
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer">
-        <NavBar />
-        <DataTable products={products} setProducts={setProducts} />
+        <NavBar navigate={navigate} setUser={setUser} user={user} />
+        {title == "products" ? (
+          <DataTable
+            title={title}
+            products={products}
+            setProducts={setProducts}
+            navigate={navigate}
+            handleEdit={handleEdit}
+          />
+        ) : (
+          <DataTableOffices offices={offices} setOffices={setOffices} />
+        )}
       </div>
     </div>
   );

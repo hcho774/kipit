@@ -5,6 +5,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import { Link } from "react-router-dom";
+import BusinessIcon from "@mui/icons-material/Business";
 
 function Sidebar() {
   return (
@@ -33,10 +34,17 @@ function Sidebar() {
             </li>
           </Link>
 
+          <Link to="/offices" style={{ textDecoration: "none" }}>
+            <li>
+              <BusinessIcon className="icon" />
+              <span>Offices</span>
+            </li>
+          </Link>
           <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>
           </li>
+
           <p className="title">USER</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>

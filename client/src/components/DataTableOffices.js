@@ -3,64 +3,50 @@ import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import "./datatable.scss";
+import "./datatableOffices.scss";
 
-function DataTable({ products, setProducts, navigate, handleEdit }) {
+function DataTableOffices({
+  products,
+  setProducts,
+  navigate,
+  handleEdit,
+  offices,
+  setOffices,
+}) {
   const [productId, setProductId] = useState();
-
   const [selectionModel, setSelectionModel] = useState([]);
 
   function handleDelete(id) {
-    fetch(`/products/${id}`, {
+    fetch(`/offices/${id}`, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
-        setProducts(products.filter((item) => item.id !== id));
+        setOffices(offices.filter((item) => item.id !== id));
       }
     });
   }
 
-  function handleView(id) {
-    navigate(`products/${productId}`);
-  }
+  // function handleView(id) {
+  //   navigate(`offices/${productId}`);
+  // }
   const productColumns = [
     { field: "id", headerName: "ID", width: 70 },
     {
-      field: "product",
-      headerName: "Product",
+      field: "office_name",
+      headerName: "Office",
       width: 230,
       renderCell: (params) => {
-        return (
-          <div className="cellWithImg">
-            <img className="cellImg" src={params.row.img} alt="avatar" />
-            {params.row.product}
-          </div>
-        );
+        return <div className="cellWithImg">{params.row.office_name}</div>;
       },
     },
     {
-      field: "price",
-      headerName: "Price",
-      width: 230,
-    },
-
-    {
-      field: "quantity",
-      headerName: "Quantity",
-      width: 100,
-    },
-    {
-      field: "locations",
+      field: "location",
       headerName: "Locations",
       width: 160,
       renderCell: (params) => {
         return (
-          <div
-            className={`cellWithStatus ${params.row.offices.map(
-              (office) => `${office.id}, `
-            )}`}
-          >
-            {params.row.offices.map((office) => `${office.id}, `)}
+          <div className={`cellWithStatus ${params.row.location}`}>
+            {params.row.location}
           </div>
         );
       },
@@ -77,7 +63,7 @@ function DataTable({ products, setProducts, navigate, handleEdit }) {
           <div className="cellAction">
             <div
               className="viewButton"
-              onClick={() => handleView(params.row.id)}
+              // onClick={() => handleView(params.row.id)}
             >
               View
             </div>
@@ -95,7 +81,7 @@ function DataTable({ products, setProducts, navigate, handleEdit }) {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add & Edit Products
+        Add & Edit Offices
         <div>
           <Link to="/products/new" className="link">
             Add New
@@ -111,7 +97,7 @@ function DataTable({ products, setProducts, navigate, handleEdit }) {
       </div>
 
       <DataGrid
-        rows={products}
+        rows={offices}
         columns={productColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[5]}
@@ -125,4 +111,4 @@ function DataTable({ products, setProducts, navigate, handleEdit }) {
   );
 }
 
-export default DataTable;
+export default DataTableOffices;

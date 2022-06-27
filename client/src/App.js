@@ -13,8 +13,7 @@ function App() {
   const [offices, setOffices] = useState([]);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-
-  // navigate.push('/')
+  const [productId, setProductId] = useState([]);
 
   useEffect(() => {
     fetch("/products")
@@ -28,16 +27,20 @@ function App() {
       .then((offices) => setOffices(offices));
   }, []);
 
-  // useEffect(() => {
-  //   // auto-login
-  //   fetch("/me").then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
-  // if (!user) return <Login onLogin={setUser} navigate={navigate} />;
+  function handleEdit(id) {
+    setProductId(id[0]);
+  }
+
+  if (!user) return <Login onLogin={setUser} navigate={navigate} />;
 
   return (
     <div className="App">
@@ -46,23 +49,102 @@ function App() {
           exact
           path="/"
           element={
-            <Home products={products} offices={offices} navigate={navigate} />
+            <Home
+              products={products}
+              offices={offices}
+              navigate={navigate}
+              setUser={setUser}
+              user={user}
+            />
           }
+        />
+        <Route
+          exact
+          path="/login"
+          element={<Login onLogin={setUser} navigate={navigate} />}
         />
 
         <Route
           exact
           path="/products"
-          element={<List products={products} setProducts={setProducts} />}
+          element={
+            <List
+              title="products"
+              offices={offices}
+              products={products}
+              setProducts={setProducts}
+              navigate={navigate}
+              setUser={setUser}
+              user={user}
+              handleEdit={handleEdit}
+              setOffices={setOffices}
+            />
+          }
+        />
+
+        <Route
+          exact
+          path="/offices"
+          element={
+            <List
+              title="offices"
+              offices={offices}
+              products={products}
+              setProducts={setProducts}
+              navigate={navigate}
+              setUser={setUser}
+              user={user}
+              handleEdit={handleEdit}
+              setOffices={setOffices}
+            />
+          }
         />
 
         <Route
           exact
           path="/products/new"
-          element={<New inputs={userInputs} title="Add New User" />}
+          element={
+            <New
+              title="Add New Products"
+              setUser={setUser}
+              user={user}
+              navigate={navigate}
+              setProducts={setProducts}
+              products={products}
+              productId={productId}
+            />
+          }
         />
 
-        <Route exact path="/products/:id" element={<Single />} />
+        <Route
+          exact
+          path="/products/edit"
+          element={
+            <New
+              title="Edit Products"
+              setUser={setUser}
+              user={user}
+              navigate={navigate}
+              setProducts={setProducts}
+              products={products}
+              productId={productId}
+            />
+          }
+        />
+
+        <Route
+          exact
+          path="/products/:id"
+          element={
+            <Single
+              products={products}
+              offices={offices}
+              navigate={navigate}
+              setUser={setUser}
+              user={user}
+            />
+          }
+        />
       </Routes>
     </div>
   );

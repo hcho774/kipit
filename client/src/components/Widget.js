@@ -8,15 +8,13 @@ import BusinessIcon from "@mui/icons-material/Business";
 
 function Widget({ type, products, offices }) {
   let data;
-
+  console.log(products.length);
   let totalPrice = 0;
   let userArray = [];
   products.map((element) => {
     totalPrice += element.price;
     userArray.push(element.user);
   });
-
-  console.log(offices.length);
 
   const averageSpending = Math.floor(totalPrice / products.length);
 
@@ -30,8 +28,8 @@ function Widget({ type, products, offices }) {
         title: "PURCHASES",
         isMoney: false,
         link: "See all orders",
-        amount: totalPrice,
-        diff: products.length,
+        amount: `$ ${totalPrice}`,
+        // diff: products.length,
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -48,7 +46,7 @@ function Widget({ type, products, offices }) {
         title: "USERS",
         isMoney: false,
         link: "View all users",
-        amount: userArray.length,
+        amount: `${userArray.length} users`,
         // diff: ,
         icon: (
           <PersonOutlineIcon
@@ -61,27 +59,27 @@ function Widget({ type, products, offices }) {
         ),
       };
       break;
-    // case "spending":
-    //   data = {
-    //     title: "SPENDINGS",
-    //     isMoney: true,
-    //     link: "View net spendings",
-    //     // amount: ,
-    //     // diff: ,
-    //     icon: (
-    //       <MonetizationOnOutlinedIcon
-    //         className="icon"
-    //         style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
-    //       />
-    //     ),
-    //   };
-    //   break;
+    case "spending":
+      data = {
+        title: "AVG. SPENDINGS",
+        isMoney: true,
+        link: "View net spendings",
+        amount: averageSpending,
+        // diff: ,
+        icon: (
+          <MonetizationOnOutlinedIcon
+            className="icon"
+            style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
+          />
+        ),
+      };
+      break;
     case "office":
       data = {
         title: "OFFICES",
         isMoney: false,
         link: "See details",
-        amount: offices.length,
+        amount: `${offices.length} offices`,
 
         icon: (
           <BusinessIcon
