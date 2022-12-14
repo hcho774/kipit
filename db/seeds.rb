@@ -9,8 +9,8 @@
 
 puts "🦸‍♀️ Seeding users..."
 User.create([
-  { full_name: "Hyun", username: "hyun", password_digest: "123", status: "active", email: "hcho774@gmail.com" },
-  { full_name: "Amy", username: "amy", password_digest: "123", status: "active", email: "amy@gmail.com"},
+  { full_name: "Hyun", username: "hyun", password_digest: BCrypt::Password.create("123"), status: "active", email: "hcho774@gmail.com" },
+  { full_name: "Amy", username: "amy", password_digest: BCrypt::Password.create("123"), status: "active", email: "amy@gmail.com"},
 ])
 
 puts "🦸‍♀️ Seeding products..."
