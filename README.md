@@ -28,7 +28,7 @@ Kipit - Business Property Management System equipped with searchable inventories
 
 ## Project Video
 
-[Click to view demo of Cravin](https://youtu.be/Nwt6tZzo78Q)
+[Click to view demo of Kipit](https://youtu.be/Nwt6tZzo78Q)
 
 ## Technologies
 
@@ -122,10 +122,10 @@ function handleDelete(id) {
 - Authorization and authenication implemented Rails Bcrypt.
 - Front-End styles and components built with Material UI.
 - Users can create account through application.
-- User can add products in the inventory system
-- User can edit details of the product such as price, quantity and location
-- User can delete the products
-  \_ User can check the status of the inventory in dashboard
+- User can add products in the inventory system.
+- User can edit details of the product such as price, quantity and location.
+- User can delete the products.
+- User can check the status of the inventory in dashboard.
 
 ## Status
 
@@ -142,4 +142,4 @@ Feel free to contact me for any questions!
 
 ## License
 
-[Click to view]()
+[Click to view](https://github.com/hcho774/phase-4-project-inventory-system/blob/main/LICENSE)
