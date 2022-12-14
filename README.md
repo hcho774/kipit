@@ -16,7 +16,7 @@
 
 ## General info
 
-Cravin - Social meeting application that allows a user to chat and meet an anonymous user that has similar or opposite interests through users' answers to a shared question - for friends, relationship, help and all desires with only good intentions.
+Kipit - Business Property Management System equipped with searchable inventories and tools for tracking inventory assets
 
 <div align="center">Welcome to Kipit. </div>
 <br/>
