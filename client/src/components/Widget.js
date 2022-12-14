@@ -8,14 +8,11 @@ import BusinessIcon from "@mui/icons-material/Business";
 
 function Widget({ type, products, offices }) {
   let data;
-  console.log(products.length);
   let totalPrice = 0;
-  let userArray = [];
-  products.map((element) => {
+  let userArray = products?.map((element) => {
     totalPrice += element.price;
-    userArray.push(element.user);
+    return element.user;
   });
-
   const averageSpending = Math.floor(totalPrice / products.length);
 
   //temporary

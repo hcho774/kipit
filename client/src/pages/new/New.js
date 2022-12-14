@@ -33,7 +33,7 @@ function New({
   );
   const [formData, setFormData] = useState({
     product: "",
-    i6mg: "",
+    img: "",
     merchant: "",
     payment: "",
     price: 0,

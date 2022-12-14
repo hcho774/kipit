@@ -21,11 +21,12 @@ function LoginForm({ onLogin, navigate, setShowLogin }) {
       if (r.ok) {
         r.json().then((user) => {
           onLogin(user);
-          navigate("/");
+          navigate("/home");
         });
       } else {
         r.json().then((err) => {
           setErrors(err.errors);
+          console.log(err);
         });
       }
     });
